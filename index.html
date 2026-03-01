@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAAAAABWESUoAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfqAwEMMyPbAWLXAAACFklEQVQ4y63TTUjUQRgG8Oedf+tqhSLbYkRLHZbSgwR96WklqSSCIEv6oFMEFhQVCdJB6tAhoQyJMMoMqlteCoIOnYwo6GB10OoSCW2ClC3kx+7MvE+H/+62axgEvadh3t88zDAzQvy9DP4VkOCigISnUrgIoMAHasqFKe3TBU9iA4ErEyyU0lv24mTNdVqlFqZR0vc8AkzcwVV6/QMoHWe2rO/FXTbiNF1RoLie3zccy3FXjQ4gMkq3ECh/Nt1glmNo7wZOMVfYBfJ9z+17Oe/0xyoYg6pRurzIA8t76KDNchCVWPlg3doMtQxQN0PekMMxIPWRn6vO0oYCJKmOL7f14DbPActu0s9xSD7RlwDL/vZ+xOsBvGDW+iwbO/MRBXCoNoklMEfNYzqq426TDiMQnjGzGgIEuLZx+dDEdPppW4DztEVgOQxs6uuKI1JRvKT4JH0BOHbgsFNOdUWBR6/7Bl+NX6zGQ9oQqGc6aPZ2Zt7zXTNSY/Tq+aH6DHMaJljexwVapZ1lNoWgY2SOOZ5ooQ2BOu5DtO345bdUyxEYIJLcc6ByK30RHISROmN23BrndB2k4dL+qKC1AKjM9VSg81kLDBIJGNRPpZti3V/oSQpBoQbvrzxPJlasiWQys5PfvtY2tO5cSggFQoBCHwil7IHTG0MBhAAI8TSiCgEhIlAEQgjyAAgfephBFIe/wf/8vAvrFxpa6UKV1rnrAAAAHnRFWHRpY2M6Y29weXJpZ2h0AEdvb2dsZSBJbmMuIDIwMTasCzM4AAAAFHRFWHRpY2M6ZGVzY3JpcHRpb24Ac1JHQrqQcwcAAAAASUVORK5CYII="><title>Aura</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #ffffff;
+    --fg: #000000;
+    --muted: #999999;
+    --accent: #444444;
+    --border: #e0e0e0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0a0a0a;
+      --fg: #e0e0e0;
+      --muted: #555555;
+      --accent: #aaaaaa;
+      --border: #1e1e1e;
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { color-scheme: light dark; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 80px 32px 100px;
+  }
+
+  /* ── Shared ── */
+  .label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .sep {
+    height: 1px;
+    background: var(--border);
+    margin: 56px 0;
+  }
+
+  /* ── 1. Purpose ── */
+  .purpose {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(32px, 5.5vw, 56px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .purpose em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* ── 2. Philosophy ── */
+  .phil-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 18px;
+  }
+
+  .phil-title i { font-style: italic; }
+
+  .phil-text {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--accent);
+    max-width: 500px;
+  }
+
+  /* ── 3. Lenses ── */
+  .lenses {
+    display: flex;
+    gap: 6px;
+    flex-wrap: nowrap;
+  }
+
+  .lens {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 9px 18px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--muted);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .lens:hover { color: var(--fg); border-color: var(--accent); }
+  .lens.active { color: var(--fg); background: var(--border); border-color: var(--border); }
+
+  .lens-sym {
+    font-size: 14px;
+    vertical-align: middle;
+    margin-right: 2px;
+  }
+
+  .lens-desc {
+    margin-top: 20px;
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--accent);
+    max-width: 480px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .lens-desc.fading {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  /* ── 4. Pillars ── */
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+  }
+
+  .pillar-card {
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .pillar-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+
+  .pillar-text {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--accent);
+  }
+
+  /* ── 5. Foundation ── */
+  .found {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+  }
+
+  .found-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+
+  .found-title em { font-style: italic; }
+
+  .found-text {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--accent);
+    max-width: 480px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .page { padding: 48px 20px 72px; }
+    .pillar-grid { grid-template-columns: 1fr; gap: 28px; }
+    .lens { font-size: 9px; padding: 7px 10px; letter-spacing: 0.02em; }
+    .lens-sym { font-size: 10px; margin-right: 1px; }
+  }
+
+  /* ── Entrance ── */
+  @keyframes up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .s1 { animation: up 0.5s ease both; }
+  .s2 { animation: up 0.5s 0.06s ease both; }
+  .s3 { animation: up 0.5s 0.12s ease both; }
+  .s4 { animation: up 0.5s 0.18s ease both; }
+  .s5 { animation: up 0.5s 0.24s ease both; }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <!-- 1 -->
+  <section class="s1">
+    <p class="label">Purpose</p>
+    <h1 class="purpose">Aura builds living systems <em>that nourish.</em></h1>
+  </section>
+
+  <div class="sep"></div>
+
+  <!-- 2 -->
+  <section class="s2">
+    <p class="label">Philosophy</p>
+    <h2 class="phil-title">Monastic <i>Polymath.</i></h2>
+    <p class="phil-text">Deep work across disciplines. Finding the connective tissue between unrelated fields. Stripping away the non-essential to focus on what carries emotional weight. Rhythm over speed. Synthesis over specialisation.</p>
+  </section>
+
+  <div class="sep"></div>
+
+  <!-- 3 -->
+  <section class="s3">
+    <p class="label">Lenses</p>
+    <div class="lenses" id="lensRow"></div>
+    <p class="lens-desc" id="lensDesc"></p>
+  </section>
+
+  <div class="sep"></div>
+
+  <!-- 4 -->
+  <section class="s4">
+    <p class="label">Sectors: Where We Play</p>
+    <div class="pillar-grid">
+      <div class="pillar-card">
+        <h3 class="pillar-name">Agroculture</h3>
+        <p class="pillar-text">The origin point. We work with the land's intelligence — its seasons, its soil, its memory. Every system we build begins here, where growth is not manufactured but tended.</p>
+      </div>
+      <div class="pillar-card">
+        <h3 class="pillar-name">Hospitality</h3>
+        <p class="pillar-text">The meeting point. Where knowledge becomes experience and space becomes care. We design environments where time slows, attention sharpens, and the ordinary becomes nourishing.</p>
+      </div>
+      <div class="pillar-card">
+        <h3 class="pillar-name">Food Sciences</h3>
+        <p class="pillar-text">The bridge. Turning taste into language and language into repeatable craft. The discipline that connects what the land produces to what the body receives.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep"></div>
+
+  <!-- 5 -->
+  <section class="s5">
+    <p class="label">Foundation</p>
+    <div class="found">
+      <h3 class="found-title">LLM <em>× Ancestral Knowledge</em></h3>
+      <p class="found-text">The life of the old and the new. Machine intelligence grounded by centuries of inherited wisdom — farming rhythms, fermentation instincts, and the oral cultures of hospitality that no dataset fully captures. We use both.</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const lenses = [
+  { tab: 'Data', sym: '◆', desc: 'We observe before we act. Data is the first discipline — the soil sample before the planting, the signal before the story.' },
+  { tab: 'Technology', sym: '⬡', desc: 'We build tools that serve the craft, not replace it. Technology is the scaffolding — invisible when it works, essential when it\u2019s absent.' },
+  { tab: 'Design', sym: '△', desc: 'We give form to intention. Design is where strategy becomes tangible — the moment an idea earns a shape, a texture, a sequence.' },
+  { tab: 'Artistry', sym: '◎', desc: 'We ultimately serve beauty. Artistry is the longest game — the work that outlives the metric, the trend, and the business plan.' },
+];
+
+let current = 0;
+const row = document.getElementById('lensRow');
+const desc = document.getElementById('lensDesc');
+
+lenses.forEach((l, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'lens' + (i === 0 ? ' active' : '');
+  btn.innerHTML = '<span class="lens-sym">' + l.sym + '</span> ' + l.tab;
+  btn.onclick = () => switchLens(i);
+  row.appendChild(btn);
+});
+
+function switchLens(i) {
+  if (i === current) return;
+  current = i;
+  desc.classList.add('fading');
+  setTimeout(() => {
+    desc.textContent = lenses[i].desc;
+    desc.classList.remove('fading');
+  }, 250);
+  document.querySelectorAll('.lens').forEach((b, idx) => b.classList.toggle('active', idx === i));
+}
+
+desc.textContent = lenses[0].desc;
+</script>
+</body>
+</html>
