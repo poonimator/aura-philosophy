@@ -185,6 +185,38 @@
     max-width: 480px;
   }
 
+  /* ── Principles ── */
+  .principle {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 20px;
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+  }
+  .principle:last-child { border-bottom: 1px solid var(--border); }
+
+  .pr-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--muted);
+    padding-top: 3px;
+  }
+
+  .pr-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 19px;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+
+  .pr-text {
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--accent);
+  }
+
   /* ── Responsive ── */
   @media (max-width: 600px) {
     .page { padding: 48px 20px 72px; }
@@ -201,9 +233,10 @@
 
   .s1 { animation: up 0.5s ease both; }
   .s2 { animation: up 0.5s 0.06s ease both; }
-  .s3 { animation: up 0.5s 0.12s ease both; }
-  .s4 { animation: up 0.5s 0.18s ease both; }
-  .s5 { animation: up 0.5s 0.24s ease both; }
+  .s2b { animation: up 0.5s 0.10s ease both; }
+  .s3 { animation: up 0.5s 0.14s ease both; }
+  .s4 { animation: up 0.5s 0.20s ease both; }
+  .s5 { animation: up 0.5s 0.26s ease both; }
 </style>
 </head>
 <body>
@@ -222,6 +255,34 @@
     <p class="label">Philosophy</p>
     <h2 class="phil-title">Monastic <i>Polymath.</i></h2>
     <p class="phil-text">Deep work across disciplines. Finding the connective tissue between unrelated fields. Stripping away the non-essential to focus on what carries emotional weight. Rhythm over speed. Synthesis over specialisation.</p>
+  </section>
+
+  <div class="sep"></div>
+
+  <!-- 2b. Principles -->
+  <section class="s2b">
+    <p class="label">Principles</p>
+    <div class="principle">
+      <span class="pr-num">I</span>
+      <div>
+        <h3 class="pr-title">Rhythm over Speed</h3>
+        <p class="pr-text">We don't rush. We follow the "rhythm of the land" or the internal rhythm of a project, much like the Aura philosophy.</p>
+      </div>
+    </div>
+    <div class="principle">
+      <span class="pr-num">II</span>
+      <div>
+        <h3 class="pr-title">Interdisciplinary Synthesis</h3>
+        <p class="pr-text">We don't just learn many things; we find the "connective tissue" between them — how the patterns in coffee root systems mimic the patterns in a design system.</p>
+      </div>
+    </div>
+    <div class="principle">
+      <span class="pr-num">III</span>
+      <div>
+        <h3 class="pr-title">Ascetic Focus</h3>
+        <p class="pr-text">We often strip away the non-essential to focus on what has "emotional weight."</p>
+      </div>
+    </div>
   </section>
 
   <div class="sep"></div>
